@@ -7,7 +7,7 @@ api.setPackagePath('testlibs');
 suite('API Calls', function() {
   test('Normalize', function(done) {
     api.normalize('jquery').then(function(normalized) {
-      assert(normalized === System.baseURL + 'jspm_packages/github/components/jquery@2.1.4.js');
+      assert(normalized === System.baseURL + 'jspm_packages/github/components/jquery@2.1.4/jquery.js');
       done();
     })
     .catch(done);
@@ -34,8 +34,7 @@ suite('API Calls', function() {
       })
       .then(function() {
         return api.normalize('ember').then(function(normalized) {
-          var content = fs.readFileSync(common.fromFileURL(normalized), 'utf-8');
-          assert(content.indexOf('ember.prod') !== -1);
+          assert(normalized === System.baseURL + 'jspm_packages/github/components/ember@1.13.2/ember.prod.js');
           done();
         });
       })
