@@ -22,7 +22,10 @@ var EventEmitter = require('events').EventEmitter;
 var SystemJSLoader = require('systemjs').constructor;
 var config = require('./lib/config');
 var path = require('path');
-var toFileURL = require('./lib/common').toFileURL;
+var common = require('./lib/common');
+
+var extend = common.extend;
+var toFileURL = common.toFileURL;
 
 require('rsvp').on('error', function(reason) {
   ui.log('warn', 'Unhandled promise rejection.\n' + reason && reason.stack || reason || '' + '\n');
@@ -72,11 +75,12 @@ API.import = function(name, parentName) {
   return apiLoader.import(name, parentName);
 };
 
-API.Loader = function() {
+API.Loader = function(options) {
+  options = options || {};
   config.loadSync();
 
-  var cfg = config.loader.getConfig();
-  cfg.baseURL = toFileURL(config.pjson.baseURL);
+  var cfg = extend(config.loader.getConfig(), options);
+  cfg.baseURL = toFileURL(options.baseURL || config.pjson.baseURL);
 
   var loader = new SystemJSLoader();
   loader.config(cfg);
