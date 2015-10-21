@@ -59,6 +59,7 @@ API.promptDefaults = function(_useDefaults) {
   ui.useDefaults(_useDefaults);
 };
 
+API.version = require('./package.json').version;
 
 /*
  * Loader API
