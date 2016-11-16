@@ -21,7 +21,7 @@
     "rimraf": "^2.4.4",
     "rsvp": "^3.1.0",
     "semver": "^5.1.0",
-    "systemjs": "0.19.41",
+    "systemjs": "https://github.com/nfl/systemjs/tarball/0.19.41/fetch-support",
     "systemjs-builder": "0.15.34",
     "traceur": "0.0.105",
     "uglify-js": "^2.6.1"
